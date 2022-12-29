@@ -11,9 +11,7 @@ function OrderPreviewScreen() {
   const tax = parseFloat((items/100*15).toFixed(2))
   const shipping = 10
   const total = items + tax + shipping
-
-
-  console.log(state.cart)
+  
   return (
     <div className='container mx-auto px-8 pb-4' >
       <h1 className='text-3xl font-medium mb-8'>Preview Order</h1>

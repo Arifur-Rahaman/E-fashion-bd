@@ -10,6 +10,8 @@ import CartViewScreen from "./pages/CartViewScreen";
 import ShippingAddressScreen from './pages/ShippingAddressScreen';
 import PaymentMethodScreen from "./pages/PaymentMethodScreen";
 import OrderPreviewScreen from "./pages/OrderPreviewScreen";
+import OrdersListScreen from "./pages/OrdersListScreen";
+import OrderDetailsScreen from "./pages/OrderDetailsScreen";
 
 function App() {
   return (
@@ -22,6 +24,9 @@ function App() {
           <Route path="shipping" element={<ShippingAddressScreen />} />
           <Route path="paymentMethod" element={<PaymentMethodScreen />} />
           <Route path="previewOrder" element={<OrderPreviewScreen />} />
+          {/* ***Admin Routes*** */}
+          <Route path="orderList" element={<OrdersListScreen />}/>
+          <Route path="orderList/:orderId" element={<OrderDetailsScreen />}/>
 
         </Routes>
         <ToastContainer/>

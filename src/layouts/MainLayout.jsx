@@ -3,7 +3,7 @@ import NavBar from '../components/NavBar'
 
 function MainLayout({children}) {
   return (
-    <div className='w-full'>
+    <div className='w-full py-16'>
         <NavBar/>
         {children}
     </div>

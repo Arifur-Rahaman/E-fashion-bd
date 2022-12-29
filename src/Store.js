@@ -46,7 +46,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 customer: {
-                    customers: action.payload
+                    customers: [...action.payload]
                 }
             }
 

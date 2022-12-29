@@ -36,7 +36,7 @@ function ShippingAddressScreen() {
             name='fullName'
             value={shippingAddress.fullName}
             onChange={handleChange}
-            className="flex-auto p-3 block rounded-lg font-medium outline-none border border-transparent focus:border-green-500 focus:text-green-500"
+            className="flex-auto p-3 block rounded-lg font-medium outline-none border border-transparent focus:border-gray-400 "
           />
         </div>
         <div className="border border-gray-400 rounded-lg flex mb-4 shadow-md">
@@ -47,7 +47,7 @@ function ShippingAddressScreen() {
             name='address'
             value={shippingAddress.address}
             onChange={handleChange}
-            className="flex-auto p-3 block rounded-lg font-medium outline-none border border-transparent focus:border-green-500 focus:text-green-500"
+            className="flex-auto p-3 block rounded-lg font-medium outline-none border border-transparent focus:border-gray-400 "
           />
         </div>
         <div className="border border-gray-400 rounded-lg flex mb-4 shadow-xs">
@@ -58,7 +58,7 @@ function ShippingAddressScreen() {
             name='city'
             value={shippingAddress.city}
             onChange = {handleChange}
-            className="flex-auto p-3 block rounded-lg font-medium outline-none border border-transparent focus:border-green-500 focus:text-green-500"
+            className="flex-auto p-3 block rounded-lg font-medium outline-none border border-transparent focus:border-gray-400 "
           />
         </div>
         <div className="border border-gray-400 rounded-lg flex mb-4 shadow-md">
@@ -69,7 +69,7 @@ function ShippingAddressScreen() {
             name='postalCode'
             onChange = {handleChange}
             value={shippingAddress.postalCode}
-            className="flex-auto p-3 block rounded-lg font-medium outline-none border border-transparent focus:border-green-500 focus:text-green-500"
+            className="flex-auto p-3 block rounded-lg font-medium outline-none border border-transparent focus:border-gray-400 "
           />
         </div>
         <div className="border border-gray-400 rounded-lg flex mb-4 shadow-md">
@@ -80,7 +80,7 @@ function ShippingAddressScreen() {
             name='country'
             value={shippingAddress.postalCode}
             onChange = {handleChange}
-            className="flex-auto p-3 block rounded-lg font-medium outline-none border border-transparent focus:border-green-500 focus:text-green-500"
+            className="flex-auto p-3 block rounded-lg font-medium outline-none border border-transparent focus:border-gray-400 "
           />
         </div>
         <div>

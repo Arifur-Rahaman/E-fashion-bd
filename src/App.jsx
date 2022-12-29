@@ -15,6 +15,9 @@ import OrderDetailsScreen from "./pages/OrderDetailsScreen";
 import ProductListScreen from "./pages/ProductListScreen";
 import ProductAddScreen from "./pages/ProductAddScreen";
 import ProductDetailsScreenAdmin from "./pages/ProductDetailsScreenAdmin";
+import CustomersListScreen from "./pages/CustomersListScreen";
+import CustomerDetailsScreen from "./pages/CustomerDetailsScreen";
+import CustomerAddScreen from "./pages/CustomerAddScreen";
 
 function App() {
   return (
@@ -33,6 +36,9 @@ function App() {
           <Route path="productList" element={<ProductListScreen />} />
           <Route path="productList/:productId" element={<ProductDetailsScreenAdmin />}/>
           <Route path="addProduct" element={<ProductAddScreen/>}/>
+          <Route path="customerList" element={<CustomersListScreen />} />
+          <Route path="addCustomer" element={<CustomerAddScreen/>}/>
+          <Route path="customerList/:customerId" element={<CustomerDetailsScreen/>}/>
 
         </Routes>
         <ToastContainer/>

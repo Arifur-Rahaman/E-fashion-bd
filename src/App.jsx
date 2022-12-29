@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import MainLayout from "./layouts/MainLayout";
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,6 +18,7 @@ import ProductDetailsScreenAdmin from "./pages/ProductDetailsScreenAdmin";
 import CustomersListScreen from "./pages/CustomersListScreen";
 import CustomerDetailsScreen from "./pages/CustomerDetailsScreen";
 import CustomerAddScreen from "./pages/CustomerAddScreen";
+import Page404 from './pages/Page404';
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
           <Route path="shipping" element={<ShippingAddressScreen />} />
           <Route path="paymentMethod" element={<PaymentMethodScreen />} />
           <Route path="previewOrder" element={<OrderPreviewScreen />} />
+          <Route path="404" element={<Page404/>}/>
+          <Route path='/*' element={<Navigate to='/404'/>}/>
           {/* ***Admin Routes*** */}
           <Route path="orderList" element={<OrdersListScreen />}/>
           <Route path="orderList/:orderId" element={<OrderDetailsScreen />}/>

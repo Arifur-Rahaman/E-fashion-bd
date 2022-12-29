@@ -12,6 +12,9 @@ import PaymentMethodScreen from "./pages/PaymentMethodScreen";
 import OrderPreviewScreen from "./pages/OrderPreviewScreen";
 import OrdersListScreen from "./pages/OrdersListScreen";
 import OrderDetailsScreen from "./pages/OrderDetailsScreen";
+import ProductListScreen from "./pages/ProductListScreen";
+import ProductAddScreen from "./pages/ProductAddScreen";
+import ProductDetailsScreenAdmin from "./pages/ProductDetailsScreenAdmin";
 
 function App() {
   return (
@@ -27,6 +30,9 @@ function App() {
           {/* ***Admin Routes*** */}
           <Route path="orderList" element={<OrdersListScreen />}/>
           <Route path="orderList/:orderId" element={<OrderDetailsScreen />}/>
+          <Route path="productList" element={<ProductListScreen />} />
+          <Route path="productList/:productId" element={<ProductDetailsScreenAdmin />}/>
+          <Route path="addProduct" element={<ProductAddScreen/>}/>
 
         </Routes>
         <ToastContainer/>

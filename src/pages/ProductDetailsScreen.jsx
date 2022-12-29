@@ -4,6 +4,7 @@ import Rating from '../components/Rating'
 import { Store } from '../Store'
 import Error from '../components/Error'
 import { ADD_TO_CART } from '../const/actions'
+import { toast } from 'react-toastify'
 function ProductDetailsScreen() {
     const { slug } = useParams()
     const [quantity, setQuantity] = useState(1)
@@ -17,7 +18,12 @@ function ProductDetailsScreen() {
     }
 
     const handleAddToCart = ()=>{
-        dispatch({ type: ADD_TO_CART, payload: { product: productItem, quantity: +quantity } })
+        if (state.cart.carts.find(cart => cart._id === productItem._id)) {
+            toast.warning('Already added')
+        }else{
+            dispatch({ type: ADD_TO_CART, payload: { product: productItem, quantity: +quantity } })
+
+        }
     }
     if (!productItem) {
         return <Error error='No product found' info='Go to shopping' route='/' />
@@ -25,9 +31,9 @@ function ProductDetailsScreen() {
     return (
         <div className="antialiased">
             <div className='container mx-auto'>
-                <div className='flex flex-col md:flex-row mx-4'>
+                <div className='flex flex-col md:flex-row mx-4 items-center'>
                     <div className="px-4">
-                        <img src={image} alt="Product" className="w-full object-cover rounded-t-xl" />
+                        <img src={image} alt="Product" className="w-96 object-cover rounded-t-xl" />
                     </div>
                     <div className="md:w-1/2 px-4">
                         {/* ***Product Description*** */}

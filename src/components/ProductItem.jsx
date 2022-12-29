@@ -3,13 +3,18 @@ import { Link } from "react-router-dom";
 import { ADD_TO_CART } from '../const/actions';
 import { Store } from '../Store';
 import Rating from './Rating';
-
+import { toast } from 'react-toastify'
 function ProductItem({ product }) {
-    const { dispatch } = useContext(Store)
+    const { dispatch, state } = useContext(Store)
     const { image, name, brand, price, slug, countInStock, rating, numReviews } = product
 
     const handleAddToCart = (product) => {
-        dispatch({ type: ADD_TO_CART, payload: { product, quantity: 1 } })
+        if (state.cart.carts.find(cart => cart._id === product._id)) {
+            toast.warning('Already added')
+        } else {
+            dispatch({ type: ADD_TO_CART, payload: { product, quantity: 1 } })
+        }
+
     }
     return (
         <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">

@@ -1,23 +1,23 @@
 import { createContext, useReducer } from "react"
-import { ORDERS_SET, PRODUCTS_SET, CUSTMERS_SET, ADD_TO_CART } from "./const/actions"
+import { ORDERS_SET, PRODUCTS_SET, CUSTMERS_SET, ADD_TO_CART, DECREASE_CART_QUANTITY, DELETE_FROM_CART } from "./const/actions"
 
 export const Store = createContext()
 const initialState = {
-    product:{
+    product: {
         products: [],
     },
-    order:{
+    order: {
         orders: [],
     },
-    customer:{
+    customer: {
         customers: [],
     },
     cart: {
         carts: [],
     }
 }
-const reducer = (state, action)=>{
-    switch(action.type){
+const reducer = (state, action) => {
+    switch (action.type) {
         case PRODUCTS_SET:
             return {
                 ...state,
@@ -25,6 +25,7 @@ const reducer = (state, action)=>{
                     products: action.payload
                 }
             }
+            
         case ORDERS_SET:
             return {
                 ...state,
@@ -32,6 +33,7 @@ const reducer = (state, action)=>{
                     orders: action.payload
                 }
             }
+
         case CUSTMERS_SET:
             return {
                 ...state,
@@ -41,20 +43,38 @@ const reducer = (state, action)=>{
             }
 
         case ADD_TO_CART:
-            const isExist = state.cart.carts.find(item=>item._id===action.payload.product._id)
-            let quantity = isExist? isExist.quantity + action.payload.quantity : action.payload.quantity
-            const newItem = {...action.payload.product, quantity}
+            const isExist = state.cart.carts.find(item => item._id === action.payload.product._id)
+            let quantity = isExist ? isExist.quantity + action.payload.quantity : action.payload.quantity
+            const newItem = { ...action.payload.product, quantity }
             let updatedCart = null;
-            if(isExist){
-                updatedCart = state.cart.carts.map(cart=>cart._id===newItem._id? newItem : cart)
-            }else{
+            if (isExist) {
+                updatedCart = state.cart.carts.map(cart => cart._id === newItem._id ? newItem : cart)
+            } else {
                 updatedCart = [...state.cart.carts, newItem]
             }
+            return {
+                ...state,
+                cart: {
+                    carts: [...updatedCart]
+                }
+            }
+
+        case DECREASE_CART_QUANTITY:
+            const decreasedCart = state.cart.carts.map((cart) => cart._id === action.payload.product._id ? { ...cart, quantity: cart.quantity - 1 } : cart)
 
             return {
                 ...state,
-                cart:{
-                    carts: [...updatedCart]
+                cart: {
+                    carts: [...decreasedCart]
+                }
+            }
+
+        case DELETE_FROM_CART:
+            const updatedAfterDelete = state.cart.carts.filter((cart) => cart._id !== action.payload.product._id)
+            return {
+                ...state,
+                cart: {
+                    carts: [...updatedAfterDelete]
                 }
             }
         default:
@@ -65,7 +85,7 @@ const reducer = (state, action)=>{
 const StoreProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
-    const value = {state, dispatch}
+    const value = { state, dispatch }
     return (
         <Store.Provider
             value={value}

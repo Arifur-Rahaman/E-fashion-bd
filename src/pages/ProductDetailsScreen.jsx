@@ -1,15 +1,24 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Rating from '../components/Rating'
 import { Store } from '../Store'
 import Error from '../components/Error'
+import { ADD_TO_CART } from '../const/actions'
 function ProductDetailsScreen() {
     const { slug } = useParams()
-    const { state } = useContext(Store)
+    const [quantity, setQuantity] = useState(1)
+    const { state, dispatch } = useContext(Store)
     const { product: { products } } = state
     const productItem = products?.find(product => product.slug === slug)
     const { name, image, price, brand, description, rating, numReviews, countInStock } = productItem || {}
 
+    const handleCartQuantityChange = (e)=>{
+        setQuantity(e.target.value)
+    }
+
+    const handleAddToCart = ()=>{
+        dispatch({ type: ADD_TO_CART, payload: { product: productItem, quantity: +quantity } })
+    }
     if (!productItem) {
         return <Error error='No product found' info='Go to shopping' route='/' />
     }
@@ -50,6 +59,8 @@ function ProductDetailsScreen() {
                                 <select
                                     className="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1 focus:outline-primary"
                                     name="quantity"
+                                    value={quantity}
+                                    onChange={handleCartQuantityChange}
                                 >
                                     <option value='1'>1</option>
                                     <option value='2'>2</option>
@@ -66,6 +77,7 @@ function ProductDetailsScreen() {
                             <button
                                 type="button"
                                 className="h-14 px-6 py-2 font-semibold rounded-xl btn btn-primary"
+                                onClick={handleAddToCart}
                                 disabled={countInStock === 0}
                             >
                                 {countInStock === 0 ? 'Out of Stock' : 'Add To Cart'}

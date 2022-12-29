@@ -7,6 +7,9 @@ import StoreProvider from './Store';
 import HomeScreen from './pages/HomeScreen';
 import ProductDetailsScreen from './pages/ProductDetailsScreen';
 import CartViewScreen from "./pages/CartViewScreen";
+import ShippingAddressScreen from './pages/ShippingAddressScreen';
+import PaymentMethodScreen from "./pages/PaymentMethodScreen";
+import OrderPreviewScreen from "./pages/OrderPreviewScreen";
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
           <Route path="/" element={<HomeScreen />} />
           <Route path="product/:slug" element={<ProductDetailsScreen />} />
           <Route path="carts" element={<CartViewScreen />} />
+          <Route path="shipping" element={<ShippingAddressScreen />} />
+          <Route path="paymentMethod" element={<PaymentMethodScreen />} />
+          <Route path="previewOrder" element={<OrderPreviewScreen />} />
 
         </Routes>
         <ToastContainer/>

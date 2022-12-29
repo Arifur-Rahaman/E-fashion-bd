@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react"
-import { ORDERS_SET, PRODUCTS_SET, CUSTMERS_SET, ADD_TO_CART, DECREASE_CART_QUANTITY, DELETE_FROM_CART } from "./const/actions"
+import { ORDERS_SET, PRODUCTS_SET, CUSTMERS_SET, ADD_TO_CART, DECREASE_CART_QUANTITY, DELETE_FROM_CART, SET_SHIPPING_ADDRESS, SET_PAYMENT_METHOD } from "./const/actions"
 
 export const Store = createContext()
 const initialState = {
@@ -14,6 +14,14 @@ const initialState = {
     },
     cart: {
         carts: [],
+        shippingAddress:{
+            fullName:'',
+            address: '',
+            city: '',
+            postalCode: '',
+            country: '',
+        },
+        paymentMethod:'paypal',
     }
 }
 const reducer = (state, action) => {
@@ -55,6 +63,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 cart: {
+                    ...state.cart,
                     carts: [...updatedCart]
                 }
             }
@@ -65,6 +74,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 cart: {
+                    ...state.cart,
                     carts: [...decreasedCart]
                 }
             }
@@ -74,7 +84,24 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 cart: {
+                    ...state.cart,
                     carts: [...updatedAfterDelete]
+                }
+            }
+        case SET_SHIPPING_ADDRESS:
+            return{
+                ...state,
+                cart: {
+                    ...state.cart,
+                    shippingAddress: {...action.payload}
+                }
+            }
+        case SET_PAYMENT_METHOD:
+            return{
+                ...state,
+                cart: {
+                    ...state.cart,
+                    paymentMethod: action.payload
                 }
             }
         default:
